@@ -1,10 +1,42 @@
 <script>
   import Todo from "./Todo.svelte";
+
+  const todos = $state([
+    {
+      id: "1",
+      name: "Belajar Nextjs",
+      done: true,
+    },
+    {
+      id: "2",
+      name: "Belajar svelte",
+      done: false,
+    },
+    {
+      id: "3",
+      name: "Belajar sveltekit",
+      done: false,
+    },
+    {
+      id: "4",
+      name: "Belajar vue",
+      done: false,
+    },
+  ]);
+
+  function remove() {
+    todos.shift()
+  }
 </script>
 
 <ul>
-  <li><Todo id="1" name="Belajar Nextjs" done={true} /></li>
-  <li><Todo id="1" name="Belajar Svelte" done={false} /></li>
-  <li><Todo id="1" name="Belajar Sveltekit" done={false} /></li>
-  <li><Todo id="1" name="Belajar vue" done={false} /></li>
+  {#each todos as todo (todo.id)}
+    <li>
+      <Todo {...todo} />
+    </li>
+  {/each}
 </ul>
+
+<button onclick={remove}>
+    remove
+</button>
