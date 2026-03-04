@@ -14,7 +14,8 @@ export default defineConfig({
         globalCounter: 'global-counter.html',
         autoCounter: 'auto-counter.html',
         user: 'user.html',
-        todo: 'todo.html'
+        todo: 'todo.html',
+        article: 'article.html'
       }
     }
   }
