@@ -23,6 +23,10 @@
     return total
   })
 
+  $inspect(count).with((type, value) => {
+    console.log(type, value)
+  })
+
   function increment() {
     count.push(1);
   }
