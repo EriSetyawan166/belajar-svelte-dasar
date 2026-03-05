@@ -18,6 +18,26 @@ $effect(() => {
 
 </script>
 
-<h1>{count}</h1>
+<h1 class={count % 2 === 0 ? 'red' : 'blue'}>{count}</h1>
 
 <button onclick={increment}>Increment</button>
+
+<style>
+    .red {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .blue {
+        background-color: blue;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>

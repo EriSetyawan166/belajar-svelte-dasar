@@ -3,12 +3,12 @@
   import Todo from "./Todo.svelte";
 
   let todos = $state([]);
-  let name = $state("")
+  let name = $state("");
   let id = 0;
 
   function add(e) {
     e.preventDefault();
-    todos.push({ id: id++, name: name});
+    todos.push({ id: id++, name: name });
     name = "";
   }
 
@@ -29,7 +29,7 @@
 </script>
 
 <form>
-  <input type="text" id="todo" bind:value={name}/>
+  <input type="text" id="todo" bind:value={name} />
   <button onclick={add}>Add</button>
 </form>
 <ul>
@@ -45,3 +45,16 @@
     </li>
   {/each}
 </ul>
+
+<style>
+  :global {
+    button {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+</style>
