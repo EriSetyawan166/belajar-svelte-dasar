@@ -1,42 +1,48 @@
 <script>
+  import EditTodo from "./EditTodo.svelte";
   import Todo from "./Todo.svelte";
 
-  const todos = $state([
-    {
-      id: "1",
-      name: "Belajar Nextjs",
-      done: true,
-    },
-    {
-      id: "2",
-      name: "Belajar svelte",
-      done: false,
-    },
-    {
-      id: "3",
-      name: "Belajar sveltekit",
-      done: false,
-    },
-    {
-      id: "4",
-      name: "Belajar vue",
-      done: false,
-    },
-  ]);
+  let todos = $state([]);
 
-  function remove() {
-    todos.shift()
+  let id = 0;
+
+  function add(e) {
+    e.preventDefault();
+    const input = document.getElementById("todo");
+    todos.push({ id: id++, name: input.value });
+    input.value = "";
+  }
+
+  function remove(id) {
+    todos = todos.filter((todo) => todo.id !== id);
+  }
+
+  function edit(id) {
+    todos = todos.map((todo) =>
+      todo.id === id ? { ...todo, edit: true } : todo,
+    );
+  }
+  function onEdit(id, name) {
+    todos = todos.map((todo) =>
+      todo.id === id ? { id, name, edit: false } : todo,
+    );
   }
 </script>
 
+<form>
+  <input type="text" id="todo" />
+  <button onclick={add}>Add</button>
+</form>
 <ul>
   {#each todos as todo (todo.id)}
     <li>
-      <Todo {...todo} />
+      {#if todo.edit}
+        <EditTodo id={todo.id} name={todo.name} {onEdit} />
+      {:else}
+        <Todo {...todo} />
+        <button onclick={() => edit(todo.id)}>Edit</button>
+        <button onclick={() => remove(todo.id)}> remove </button>
+      {/if}
     </li>
   {/each}
 </ul>
-
-<button onclick={remove}>
-    remove
-</button>
