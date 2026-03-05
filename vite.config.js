@@ -15,7 +15,8 @@ export default defineConfig({
         autoCounter: 'auto-counter.html',
         user: 'user.html',
         todo: 'todo.html',
-        article: 'article.html'
+        article: 'article.html',
+        time: 'time.html'
       }
     }
   }
